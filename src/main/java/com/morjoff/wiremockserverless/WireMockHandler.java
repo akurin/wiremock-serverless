@@ -16,7 +16,7 @@ public class WireMockHandler implements RequestHandler<APIGatewayProxyRequestEve
                 .options();
 //                .usingFilesUnderClasspath("wiremock");
 
-        WireMockApp app = new WireMockApp(options);
+        ServerlessWireMockApp app = new ServerlessWireMockApp(options);
         this.handler = app.buildStubRequestHandler();
     }
 

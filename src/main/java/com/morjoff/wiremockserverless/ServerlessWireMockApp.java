@@ -51,7 +51,7 @@ import static com.github.tomakehurst.wiremock.stubbing.ServeEvent.TO_LOGGED_REQU
 import static com.google.common.base.MoreObjects.firstNonNull;
 import static com.google.common.collect.Iterables.contains;
 
-public class WireMockApp implements StubServer, Admin {
+public class ServerlessWireMockApp implements StubServer, Admin {
 
     public static final String FILES_ROOT = "__files";
 
@@ -67,7 +67,7 @@ public class WireMockApp implements StubServer, Admin {
     private final List<GlobalSettingsListener> globalSettingsListeners;
     private Options options;
 
-    public WireMockApp(Options options) {
+    public ServerlessWireMockApp(Options options) {
         this.options = options;
 
         FileSource fileSource = options.filesRoot();
@@ -94,7 +94,7 @@ public class WireMockApp implements StubServer, Admin {
         loadDefaultMappings();
     }
 
-    public WireMockApp(
+    public ServerlessWireMockApp(
             boolean browserProxyingEnabled,
             MappingsLoader defaultMappingsLoader,
             MappingsSaver mappingsSaver,
