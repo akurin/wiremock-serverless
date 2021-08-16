@@ -5,7 +5,6 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.github.tomakehurst.wiremock.core.Options;
-import com.github.tomakehurst.wiremock.core.WireMockApp;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import com.github.tomakehurst.wiremock.http.StubRequestHandler;
 
@@ -17,7 +16,7 @@ public class WireMockHandler implements RequestHandler<APIGatewayProxyRequestEve
                 .options();
 //                .usingFilesUnderClasspath("wiremock");
 
-        WireMockApp app = new WireMockApp(options, null);
+        WireMockApp app = new WireMockApp(options);
         this.handler = app.buildStubRequestHandler();
     }
 
