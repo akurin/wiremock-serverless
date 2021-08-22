@@ -14,4 +14,5 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
       - name: Maven Verify
+        working-directory: app
         run: mvn -B verify
