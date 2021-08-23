@@ -40,11 +40,14 @@ public class WiremockServerlessStack extends Stack {
                         .dataTraceEnabled(true)
                         .loggingLevel(MethodLoggingLevel.INFO)
                         .build())
+                .deploy(true)
                 .cloudWatchRole(false)
                 .build());
 
-        Integration lambdaIntegration = new LambdaIntegration(lambdaFunction);
+        Integration lambdaIntegration = new LambdaIntegration(lambdaFunction, LambdaIntegrationOptions.builder().build());
 
-        api.getRoot().addResource("{proxy+}").addMethod("ANY", lambdaIntegration);
+        IResource root = api.getRoot();
+        root.addResource("{proxy+}").addMethod("ANY", lambdaIntegration);
+        root.addMethod("ANY", lambdaIntegration);
     }
 }
