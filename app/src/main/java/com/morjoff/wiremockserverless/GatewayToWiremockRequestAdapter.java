@@ -19,7 +19,7 @@ public class GatewayToWiremockRequestAdapter implements Request {
 
     @Override
     public String getUrl() {
-        return "todo";
+        return this.requestEvent.getPath();
     }
 
     @Override
@@ -59,7 +59,11 @@ public class GatewayToWiremockRequestAdapter implements Request {
 
     @Override
     public HttpHeader header(String key) {
-        return null;
+        if (!this.requestEvent.getHeaders().containsKey(key))
+            return null;
+
+        String value = this.requestEvent.getHeaders().get(key);
+        return new HttpHeader(key, value);
     }
 
     @Override
@@ -85,7 +89,7 @@ public class GatewayToWiremockRequestAdapter implements Request {
 
     @Override
     public boolean containsHeader(String key) {
-        return false;
+        return this.requestEvent.getHeaders().containsKey(key);
     }
 
     @Override
@@ -100,7 +104,7 @@ public class GatewayToWiremockRequestAdapter implements Request {
 
     @Override
     public QueryParameter queryParameter(String key) {
-        return null;
+        return QueryParameter.absent(key); // todo
     }
 
     @Override
@@ -110,7 +114,7 @@ public class GatewayToWiremockRequestAdapter implements Request {
 
     @Override
     public String getBodyAsString() {
-        return "";
+        return requestEvent.getBody();
     }
 
     @Override
