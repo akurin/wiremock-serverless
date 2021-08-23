@@ -7,23 +7,23 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RoutingRequestHandlerTest {
-    private TestRequestHandler adminRequestHandler;
-    private TestRequestHandler stubRequestHandler;
+    private SpyingRequestHandler adminRequestHandler;
+    private SpyingRequestHandler stubRequestHandler;
     private RoutingRequestHandler sut;
 
     @BeforeEach
     public void BeforeEach() {
-        this.adminRequestHandler = new TestRequestHandler();
-        this.stubRequestHandler = new TestRequestHandler();
+        this.adminRequestHandler = new SpyingRequestHandler();
+        this.stubRequestHandler = new SpyingRequestHandler();
         this.sut = new RoutingRequestHandler(this.adminRequestHandler, this.stubRequestHandler);
     }
 
     @Test
     public void should_route_admin_requests() {
 
-        TestRequest request = new TestRequest();
+        FakeRequest request = new FakeRequest();
         request.setUrl("/__admin/mappings/new");
-        TestHttpResponder httpResponder = new TestHttpResponder();
+        DummyHttpResponder httpResponder = new DummyHttpResponder();
 
         this.sut.handle(request, httpResponder);
 
@@ -33,9 +33,9 @@ public class RoutingRequestHandlerTest {
 
     @Test
     public void should_route_stub_requests() {
-        TestRequest request = new TestRequest();
+        FakeRequest request = new FakeRequest();
         request.setUrl("/some");
-        TestHttpResponder httpResponder = new TestHttpResponder();
+        DummyHttpResponder httpResponder = new DummyHttpResponder();
 
         this.sut.handle(request, httpResponder);
 

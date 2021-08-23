@@ -7,16 +7,16 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
-public class TestRequest implements Request {
+public class FakeRequest implements Request {
     private String url;
-
-    public void setUrl(String value) {
-        this.url = value;
-    }
 
     @Override
     public String getUrl() {
         return this.url;
+    }
+
+    public void setUrl(String value) {
+        this.url = value;
     }
 
     @Override

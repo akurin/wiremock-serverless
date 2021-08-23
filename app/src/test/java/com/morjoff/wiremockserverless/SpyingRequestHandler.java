@@ -4,7 +4,7 @@ import com.github.tomakehurst.wiremock.http.HttpResponder;
 import com.github.tomakehurst.wiremock.http.Request;
 import com.github.tomakehurst.wiremock.http.RequestHandler;
 
-public class TestRequestHandler implements RequestHandler {
+public class SpyingRequestHandler implements RequestHandler {
     private boolean wasCalled;
 
     @Override
