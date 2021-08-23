@@ -54,13 +54,13 @@ public class GatewayToWiremockRequestAdapter implements Request {
 
     @Override
     public String getHeader(String key) {
-        return null;
+        return this.requestEvent.getHeaders().getOrDefault(key, null);
     }
 
     @Override
     public HttpHeader header(String key) {
         if (!this.requestEvent.getHeaders().containsKey(key))
-            return null;
+            return HttpHeader.absent(key);
 
         String value = this.requestEvent.getHeaders().get(key);
         return new HttpHeader(key, value);
@@ -68,7 +68,9 @@ public class GatewayToWiremockRequestAdapter implements Request {
 
     @Override
     public ContentTypeHeader contentTypeHeader() {
-        return null;
+        String value = getHeader(ContentTypeHeader.KEY);
+        return value == null ? ContentTypeHeader.absent() : new ContentTypeHeader(value);
+
     }
 
     @Override

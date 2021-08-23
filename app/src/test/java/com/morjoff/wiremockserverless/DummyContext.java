@@ -19,7 +19,7 @@ public class DummyContext implements Context {
     }
 
     public String getLogStreamName() {
-        return new String("2020/02/26/[$LATEST]704f8dxmpla04097b9134246b8438f1a");
+        return "2020/02/26/[$LATEST]704f8dxmpla04097b9134246b8438f1a";
     }
 
     public String getFunctionName() {
